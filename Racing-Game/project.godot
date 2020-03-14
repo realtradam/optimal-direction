@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Hybrid Drift"
+config/name="Optimal-Direction"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
