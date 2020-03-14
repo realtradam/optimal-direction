@@ -1,0 +1,142 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://CarBody.gd" type="Script" id=1]
+[ext_resource path="res://Art(non-orig)/PNG/Cars/big/blue/car_blue_2.png" type="Texture" id=2]
+[ext_resource path="res://FrontWheel.gd" type="Script" id=3]
+[ext_resource path="res://4WheelCar/SkidController.gd" type="Script" id=4]
+[ext_resource path="res://BackWheel.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 35.7301, 58.1399 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 6.93714, 14.1584 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 7.07375, 14.3787 )
+
+[node name="4WheelCar" type="Node"]
+
+[node name="CarBody" type="RigidBody2D" parent="."]
+position = Vector2( -0.446396, -0.582428 )
+z_index = 1
+mass = 20.0
+script = ExtResource( 1 )
+
+[node name="Engine" type="RigidBody2D" parent="CarBody"]
+position = Vector2( 0, 26 )
+z_index = 2
+mass = 30.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarBody/Engine"]
+z_index = 2
+shape = SubResource( 1 )
+disabled = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="CarBody"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarBody"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+shape = SubResource( 2 )
+
+[node name="Wheels" type="Node" parent="CarBody"]
+
+[node name="FRWheel" type="RigidBody2D" parent="CarBody/Wheels"]
+position = Vector2( 24.7786, -36.8564 )
+mass = 15.0
+linear_damp = 0.4
+angular_damp = 7.04
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarBody/Wheels/FRWheel"]
+shape = SubResource( 3 )
+disabled = true
+
+[node name="SkidController4" type="Node" parent="CarBody/Wheels/FRWheel"]
+script = ExtResource( 4 )
+
+[node name="FLWheel" type="RigidBody2D" parent="CarBody/Wheels"]
+position = Vector2( -25.6184, -36.8564 )
+mass = 15.0
+linear_damp = 0.4
+angular_damp = 7.04
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarBody/Wheels/FLWheel"]
+shape = SubResource( 4 )
+disabled = true
+
+[node name="SkidController3" type="Node" parent="CarBody/Wheels/FLWheel"]
+script = ExtResource( 4 )
+
+[node name="BLWheel" type="RigidBody2D" parent="CarBody/Wheels"]
+position = Vector2( -22.4074, 38.5726 )
+mass = 15.0
+linear_damp = 0.4
+angular_damp = 7.04
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarBody/Wheels/BLWheel"]
+shape = SubResource( 4 )
+disabled = true
+
+[node name="SkidController2" type="Node" parent="CarBody/Wheels/BLWheel"]
+script = ExtResource( 4 )
+
+[node name="BRWheel" type="RigidBody2D" parent="CarBody/Wheels"]
+position = Vector2( 21.2326, 38.4176 )
+mass = 15.0
+linear_damp = 0.4
+angular_damp = 7.04
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarBody/Wheels/BRWheel"]
+shape = SubResource( 4 )
+disabled = true
+
+[node name="SkidController" type="Node" parent="CarBody/Wheels/BRWheel"]
+script = ExtResource( 4 )
+
+[node name="PinJointFR" type="PinJoint2D" parent="CarBody"]
+position = Vector2( 25.2246, -36.274 )
+node_a = NodePath("../Wheels/FRWheel")
+node_b = NodePath("..")
+
+[node name="PinJointBR" type="PinJoint2D" parent="CarBody"]
+position = Vector2( 21.6786, 39.155 )
+node_a = NodePath("../Wheels/BRWheel")
+node_b = NodePath("..")
+
+[node name="PinJointBL" type="PinJoint2D" parent="CarBody"]
+position = Vector2( -21.961, 39.155 )
+node_a = NodePath("../Wheels/BLWheel")
+node_b = NodePath("..")
+
+[node name="PinJointFL" type="PinJoint2D" parent="CarBody"]
+position = Vector2( -25.1724, -36.274 )
+node_a = NodePath("../Wheels/FLWheel")
+node_b = NodePath("..")
+
+[node name="PinjointEngine" type="PinJoint2D" parent="CarBody"]
+position = Vector2( 0, 26 )
+node_a = NodePath("../..")
+node_b = NodePath("..")

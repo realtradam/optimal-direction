@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Camera2D.gd" type="Script" id=1]
+[ext_resource path="res://Art(non-orig)/LCDMonoWinTT/LCDML___.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://RichTextLabel.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=9]
+size = 200
+font_data = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D"]
+position = Vector2( -895.896, -973.722 )
+rotating = true
+current = true
+zoom = Vector2( 2, 2 )
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+drag_margin_left = 0.05
+drag_margin_top = 0.05
+drag_margin_right = 0.05
+drag_margin_bottom = 0.05
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 479.896
+margin_top = 237.722
+margin_right = 895.896
+margin_bottom = 492.722
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+anchor_right = 0.004
+margin_left = 44.7994
+margin_top = 34.9523
+margin_right = 386.135
+margin_bottom = 212.952
+custom_fonts/normal_font = SubResource( 9 )
+custom_colors/default_color = Color( 0.0784314, 1, 0, 1 )
+text = "123"
+scroll_active = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
