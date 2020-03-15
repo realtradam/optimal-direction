@@ -16,7 +16,7 @@ func _ready():
 	add_child(skidRecent)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	
 	if(skidSwitch && get_parent().isSkid):#if controller believes car is skidding and the wheel is skidding
 		#ignore the status and let the skid keep drawing

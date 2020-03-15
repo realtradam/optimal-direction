@@ -1,18 +1,19 @@
 extends Area2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var err1
+var err2
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	connect("body_entered", self, "_on_Area2D_body_enter")
-	connect("body_exited", self, "_on_Area2D_body_exit")
+	err1 = connect("body_entered", self, "_on_Area2D_body_enter")
+	err2 = connect("body_exited", self, "_on_Area2D_body_exit")
+	
+	#stops warning from poping up so yee
+	if(err1 != 0 || err2 != 0):
+		print(err1)
+		print(err2)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-
 
 func _on_Area2D_body_enter(body):
 	print(body.get_name(), " entered area")

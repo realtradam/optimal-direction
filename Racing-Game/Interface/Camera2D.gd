@@ -8,11 +8,10 @@ var printfps = 0;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	zoom = Vector2(2,2)
-	connect("pos",get_node("Cars/4WheelCar"),"_on_CarBody_pos")
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 #	#print fps
 #	printfps += delta
 #	if(printfps > 1):

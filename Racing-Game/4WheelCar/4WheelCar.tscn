@@ -6,7 +6,6 @@
 [ext_resource path="res://4WheelCar/Skid/SkidController.gd" type="Script" id=4]
 [ext_resource path="res://4WheelCar/BackWheel.gd" type="Script" id=5]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
