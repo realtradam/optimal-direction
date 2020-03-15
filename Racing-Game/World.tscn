@@ -3,15 +3,13 @@
 [ext_resource path="res://biggerTest.png" type="Texture" id=1]
 [ext_resource path="res://4WheelCar/4WheelCar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Old/Small.gd" type="Script" id=3]
-[ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://Old/Big.gd" type="Script" id=5]
 [ext_resource path="res://sun_sedan_car_red_1.png" type="Texture" id=6]
-[ext_resource path="res://Player.gd" type="Script" id=7]
 [ext_resource path="res://cone_straight.png" type="Texture" id=8]
-[ext_resource path="res:// ObstacleBarrier.gd" type="Script" id=9]
+[ext_resource path="res://Obstacles/ ObstacleBarrier.gd" type="Script" id=9]
 [ext_resource path="res://Art(non-orig)/PNG/Objects/barrier_white.png" type="Texture" id=10]
 [ext_resource path="res://Art(non-orig)/PNG/Objects/barrier_red.png" type="Texture" id=11]
-[ext_resource path="res://ObstacleTires.gd" type="Script" id=12]
+[ext_resource path="res://Obstacles/ObstacleTires.gd" type="Script" id=12]
 [ext_resource path="res://Art(non-orig)/PNG/Objects/tires_red_alt.png" type="Texture" id=13]
 [ext_resource path="res://Art(non-orig)/PNG/Objects/tires_white_alt.png" type="Texture" id=14]
 [ext_resource path="res://Art(non-orig)/PNG/Objects/oil.png" type="Texture" id=15]
@@ -24,25 +22,47 @@
 [ext_resource path="res://Art(non-orig)/PNG/Objects/skidmark_short_1.png" type="Texture" id=22]
 [ext_resource path="res://4WheelCar/FRLine.gd" type="Script" id=23]
 [ext_resource path="res://4WheelCar/FLLine.gd" type="Script" id=24]
-[ext_resource path="res://Area2D.gd" type="Script" id=25]
+[ext_resource path="res://Surfaces/Area2D.gd" type="Script" id=25]
+
+[sub_resource type="StreamTexture" id=8]
+flags = 4
+load_path = "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 22.4795, 22.3936 )
+[sub_resource type="GDScript" id=2]
+script/source = "extends RigidBody2D
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	bounce = 1
+	linear_damp = 3
+	angular_damp = 3
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+"
 
 [sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 22.4795, 22.3936 )
+
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 104.998, 31.134 )
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=5]
 radius = 28.3155
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 size = 200
 font_data = ExtResource( 17 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 795.282, 251.806 )
 
 [node name="World" type="Node"]
@@ -74,7 +94,7 @@ __meta__ = {
 visible = false
 modulate = Color( 0.545098, 0.0627451, 0.0627451, 1 )
 scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 4 )
+texture = SubResource( 8 )
 
 [node name="Big" type="RigidBody2D" parent="Cars/OldSimpleCar"]
 visible = false
@@ -118,7 +138,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent=" Obstacles/SolidOuterWalls/Wall27"]
 scale = Vector2( 1, 85 )
-texture = ExtResource( 4 )
+texture = SubResource( 8 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -137,7 +157,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent=" Obstacles/SolidOuterWalls/Wall28"]
 scale = Vector2( 1, 85 )
-texture = ExtResource( 4 )
+texture = SubResource( 8 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -156,7 +176,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent=" Obstacles/SolidOuterWalls/Wall29"]
 scale = Vector2( 85, 1 )
-texture = ExtResource( 4 )
+texture = SubResource( 8 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -175,7 +195,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent=" Obstacles/SolidOuterWalls/Wall30"]
 scale = Vector2( 85, 1 )
-texture = ExtResource( 4 )
+texture = SubResource( 8 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -187,7 +207,7 @@ position = Vector2( 787.795, -1237.5 )
 mass = 0.5
 linear_damp = 1.5
 angular_damp = 3.0
-script = ExtResource( 7 )
+script = SubResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -196,14 +216,14 @@ __meta__ = {
 texture = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Cones/Cone"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Cone2" type="RigidBody2D" parent=" Obstacles/Cones"]
 position = Vector2( 812.627, -1181.67 )
 mass = 0.5
 linear_damp = 1.5
 angular_damp = 3.0
-script = ExtResource( 7 )
+script = SubResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -212,14 +232,14 @@ __meta__ = {
 texture = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Cones/Cone2"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Cone3" type="RigidBody2D" parent=" Obstacles/Cones"]
 position = Vector2( 832, -1127.68 )
 mass = 0.5
 linear_damp = 1.5
 angular_damp = 3.0
-script = ExtResource( 7 )
+script = SubResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -228,14 +248,14 @@ __meta__ = {
 texture = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Cones/Cone3"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Cone4" type="RigidBody2D" parent=" Obstacles/Cones"]
 position = Vector2( 851.828, -1072.86 )
 mass = 0.5
 linear_damp = 1.5
 angular_damp = 3.0
-script = ExtResource( 7 )
+script = SubResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -244,7 +264,7 @@ __meta__ = {
 texture = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Cones/Cone4"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Walls" type="Node" parent=" Obstacles"]
 
@@ -265,7 +285,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -287,7 +307,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall12"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -309,7 +329,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall15"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -332,7 +352,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall18"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -355,7 +375,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall23"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -378,7 +398,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall25"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -401,7 +421,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall24"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -424,7 +444,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall28"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -447,7 +467,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall20"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -469,7 +489,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall8"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -491,7 +511,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall11"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -513,7 +533,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall2"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -535,7 +555,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall7"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -557,7 +577,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall10"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -579,7 +599,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall14"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -602,7 +622,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall17"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -625,7 +645,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall21"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -648,7 +668,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall27"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -671,7 +691,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall22"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -694,7 +714,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall26"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -717,7 +737,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall19"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -739,7 +759,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall6"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -761,7 +781,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Walls/Wall9"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -780,7 +800,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D85" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -529.853, -973.722 )
@@ -794,7 +814,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D85"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D37" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1856.86, -2047.19 )
@@ -808,7 +828,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D37"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D102" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3040.86, 1664.81 )
@@ -822,7 +842,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D102"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D211" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 128, 1557.48 )
@@ -836,7 +856,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D211"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D214" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 129, 1441.77 )
@@ -850,7 +870,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D214"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D220" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 12.9599, -978.241 )
@@ -864,7 +884,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D220"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D173" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1884, 1344.81 )
@@ -878,7 +898,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D173"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D177" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1952.78, 1472.81 )
@@ -892,7 +912,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D177"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D181" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2080, 1473.63 )
@@ -906,7 +926,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D181"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D185" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2208, 1474.44 )
@@ -920,7 +940,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D185"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D190" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2336, 1475.26 )
@@ -934,7 +954,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D190"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D196" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1884, 1216.81 )
@@ -948,7 +968,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D196"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D200" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1884, 1089.63 )
@@ -962,7 +982,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D200"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D202" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2108.69, -280.35 )
@@ -976,7 +996,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D202"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D206" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1983.73, -282.622 )
@@ -990,7 +1010,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D206"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D109" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3040.86, 1901.09 )
@@ -1004,7 +1024,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D109"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D117" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3040.86, 2141.66 )
@@ -1018,7 +1038,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D117"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D121" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3042.29, 2382.23 )
@@ -1032,7 +1052,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D121"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D129" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1917.71, 2467.72 )
@@ -1046,7 +1066,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D129"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D143" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1915.42, 2108.83 )
@@ -1060,7 +1080,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D143"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D59" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1859.61, -1567.19 )
@@ -1074,7 +1094,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D59"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D13" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1184, -2175.19 )
@@ -1089,7 +1109,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D13"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D75" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -692.905, -2173.89 )
@@ -1104,7 +1124,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D75"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D18" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -532.109, -1211.54 )
@@ -1118,7 +1138,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D18"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D89" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -527.099, -737.208 )
@@ -1132,7 +1152,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D89"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D41" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1859.61, -1810.67 )
@@ -1146,7 +1166,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D41"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D56" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1862.37, -1330.67 )
@@ -1160,7 +1180,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D56"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D28" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -937.426, -2172.59 )
@@ -1175,7 +1195,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D28"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D67" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -446.331, -2171.3 )
@@ -1190,7 +1210,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D67"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D8" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -532.967, -1329.74 )
@@ -1204,7 +1224,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D8"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D90" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -530.71, -855.404 )
@@ -1218,7 +1238,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D90"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D42" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1856, -1928.87 )
@@ -1232,7 +1252,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D42"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D99" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3040, 1783.13 )
@@ -1246,7 +1266,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D99"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D106" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3040, 2019.41 )
@@ -1260,7 +1280,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D106"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D120" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3040, 2259.98 )
@@ -1274,7 +1294,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D120"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D134" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1920, 2345.46 )
@@ -1288,7 +1308,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D134"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D147" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1917.71, 1986.57 )
@@ -1302,7 +1322,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D147"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D155" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1216, 1541.77 )
@@ -1316,7 +1336,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D155"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D160" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1344, 1539.33 )
@@ -1330,7 +1350,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D160"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D162" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1472, 1540.15 )
@@ -1344,7 +1364,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D162"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D166" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1600, 1541.77 )
@@ -1358,7 +1378,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D166"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D124" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3041.43, 2500.55 )
@@ -1372,7 +1392,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D124"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D132" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1918.57, 2586.03 )
@@ -1386,7 +1406,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D132"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D145" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1916.28, 2227.15 )
@@ -1400,7 +1420,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D145"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D53" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1858.75, -1448.87 )
@@ -1414,7 +1434,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D53"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D14" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1060.79, -2174.47 )
@@ -1429,7 +1449,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D14"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D77" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -569.696, -2173.18 )
@@ -1444,7 +1464,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D77"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D23" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -532.967, -1093.22 )
@@ -1458,7 +1478,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D23"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D87" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -527.956, -618.89 )
@@ -1472,7 +1492,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D87"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D39" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1858.75, -1692.35 )
@@ -1486,7 +1506,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D39"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D61" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1861.51, -1212.35 )
@@ -1500,7 +1520,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D61"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D26" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -815.51, -2173.17 )
@@ -1515,7 +1535,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D26"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D71" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -324.415, -2171.88 )
@@ -1530,7 +1550,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D71"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D4" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -469.698, -1391.38 )
@@ -1544,7 +1564,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D4"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D83" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -464.688, -918.681 )
@@ -1558,7 +1578,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D83"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D35" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1919.27, -1990.52 )
@@ -1572,7 +1592,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D35"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D97" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3103.27, 1721.48 )
@@ -1586,7 +1606,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D97"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D209" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 190.411, 1614.97 )
@@ -1600,7 +1620,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D209"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D213" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 191.411, 1498.44 )
@@ -1614,7 +1634,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D213"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D218" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 75.371, -921.571 )
@@ -1628,7 +1648,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D218"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D169" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1946.41, 1401.48 )
@@ -1642,7 +1662,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D169"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D180" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2015.19, 1529.48 )
@@ -1656,7 +1676,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D180"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D184" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2142.41, 1530.3 )
@@ -1670,7 +1690,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D184"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D188" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2270.41, 1531.11 )
@@ -1684,7 +1704,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D188"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D192" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2398.41, 1531.93 )
@@ -1698,7 +1718,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D192"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D193" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1946.41, 1273.48 )
@@ -1712,7 +1732,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D193"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D199" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1946.41, 1146.3 )
@@ -1726,7 +1746,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D199"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D201" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2171.1, -223.68 )
@@ -1740,7 +1760,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D201"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D208" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2046.14, -225.952 )
@@ -1754,7 +1774,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D208"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D105" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3103.27, 1957.76 )
@@ -1768,7 +1788,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D105"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D113" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3103.27, 2198.33 )
@@ -1782,7 +1802,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D113"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D125" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3104.7, 2438.9 )
@@ -1796,7 +1816,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D125"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D137" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1855.3, 2524.39 )
@@ -1810,7 +1830,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D137"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D150" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1853.01, 2165.5 )
@@ -1824,7 +1844,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D150"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D51" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1922.02, -1510.52 )
@@ -1838,7 +1858,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D51"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D11" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1120.73, -2118.52 )
@@ -1853,7 +1873,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D11"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D69" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -629.636, -2117.22 )
@@ -1868,7 +1888,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D69"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D20" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -466.944, -1154.87 )
@@ -1882,7 +1902,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D20"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D94" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -464.688, -680.539 )
@@ -1896,7 +1916,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D94"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D46" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1922.02, -1754 )
@@ -1910,7 +1930,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D46"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D64" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1924.78, -1274 )
@@ -1924,7 +1944,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D64"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D32" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -875.015, -2115.92 )
@@ -1939,7 +1959,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D32"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D80" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -383.92, -2114.63 )
@@ -1954,7 +1974,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D80"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D7" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -470.555, -1273.07 )
@@ -1968,7 +1988,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D7"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D95" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -469.156, -800.364 )
@@ -1982,7 +2002,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D95"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D47" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1918.41, -1872.2 )
@@ -1996,7 +2016,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D47"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D103" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3102.41, 1839.8 )
@@ -2010,7 +2030,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D103"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D108" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3102.41, 2076.08 )
@@ -2024,7 +2044,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D108"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D116" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3102.41, 2316.65 )
@@ -2038,7 +2058,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D116"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D133" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1857.59, 2402.13 )
@@ -2052,7 +2072,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D133"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D146" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1855.3, 2043.24 )
@@ -2066,7 +2086,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D146"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D156" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1153.59, 1598.44 )
@@ -2080,7 +2100,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D156"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D157" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1281.59, 1599.26 )
@@ -2094,7 +2114,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D157"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D161" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1409.59, 1598.44 )
@@ -2108,7 +2128,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D161"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D168" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1537.59, 1600.07 )
@@ -2122,7 +2142,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D168"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D171" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1473.59, 1468.81 )
@@ -2136,7 +2156,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D171"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D175" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1347.18, 1468.81 )
@@ -2150,7 +2170,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D175"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D123" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3103.84, 2557.22 )
@@ -2164,7 +2184,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D123"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D139" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1856.16, 2642.7 )
@@ -2178,7 +2198,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D139"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D152" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1853.87, 2283.81 )
@@ -2192,7 +2212,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D152"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D62" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1921.17, -1392.2 )
@@ -2206,7 +2226,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D62"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D15" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -997.522, -2117.8 )
@@ -2221,7 +2241,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D15"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D79" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -506.427, -2116.51 )
@@ -2236,7 +2256,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D79"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D24" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -467.802, -1037.37 )
@@ -2250,7 +2270,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D24"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D86" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -465.545, -562.221 )
@@ -2264,7 +2284,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D86"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D38" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1921.17, -1635.68 )
@@ -2278,7 +2298,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D38"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D60" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1923.92, -1155.68 )
@@ -2292,7 +2312,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D60"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D25" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -753.098, -2116.5 )
@@ -2307,7 +2327,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D25"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D65" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -262.003, -2115.21 )
@@ -2322,7 +2342,7 @@ __meta__ = {
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D65"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D2" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -532.109, -1391.38 )
@@ -2336,7 +2356,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D2"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D81" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -529.853, -917.052 )
@@ -2350,7 +2370,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D81"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D33" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1856.86, -1990.52 )
@@ -2364,7 +2384,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D33"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D101" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3040.86, 1721.48 )
@@ -2378,7 +2398,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D101"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D210" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 128, 1614.97 )
@@ -2392,7 +2412,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D210"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D215" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 129, 1498.44 )
@@ -2406,7 +2426,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D215"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D219" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 12.9599, -921.571 )
@@ -2420,7 +2440,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D219"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D172" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1884, 1401.48 )
@@ -2434,7 +2454,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D172"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D179" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1952.78, 1529.48 )
@@ -2448,7 +2468,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D179"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D183" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2080, 1530.3 )
@@ -2462,7 +2482,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D183"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D187" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2208, 1531.11 )
@@ -2476,7 +2496,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D187"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D191" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2336, 1531.93 )
@@ -2490,7 +2510,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D191"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D194" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1884, 1273.48 )
@@ -2504,7 +2524,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D194"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D197" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1884, 1146.3 )
@@ -2518,7 +2538,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D197"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D203" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2108.69, -223.68 )
@@ -2532,7 +2552,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D203"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D207" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1983.73, -225.952 )
@@ -2546,7 +2566,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D207"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D107" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3040.86, 1957.76 )
@@ -2560,7 +2580,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D107"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D114" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3040.86, 2198.33 )
@@ -2574,7 +2594,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D114"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D122" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3042.29, 2438.9 )
@@ -2588,7 +2608,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D122"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D136" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1917.71, 2524.39 )
@@ -2602,7 +2622,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D136"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D149" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1915.42, 2165.5 )
@@ -2616,7 +2636,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D149"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D57" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1859.61, -1510.52 )
@@ -2630,7 +2650,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D57"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D9" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1183.14, -2118.52 )
@@ -2645,7 +2665,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D9"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D66" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -692.048, -2117.22 )
@@ -2660,7 +2680,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D66"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D19" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -532.109, -1154.87 )
@@ -2674,7 +2694,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D19"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D91" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -527.099, -680.539 )
@@ -2688,7 +2708,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D91"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D43" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1859.61, -1754 )
@@ -2702,7 +2722,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D43"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D54" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1862.37, -1274 )
@@ -2716,7 +2736,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D54"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D29" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -937.426, -2115.92 )
@@ -2731,7 +2751,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D29"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D73" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -446.331, -2114.63 )
@@ -2746,7 +2766,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D73"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D5" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -532.967, -1273.07 )
@@ -2760,7 +2780,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D5"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D84" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -530.71, -798.735 )
@@ -2774,7 +2794,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D84"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D36" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1856, -1872.2 )
@@ -2788,7 +2808,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D36"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D98" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3040, 1839.8 )
@@ -2802,7 +2822,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D98"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D111" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3040, 2076.08 )
@@ -2816,7 +2836,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D111"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D119" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3040, 2316.65 )
@@ -2830,7 +2850,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D119"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D135" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1920, 2402.13 )
@@ -2844,7 +2864,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D135"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D148" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1917.71, 2043.24 )
@@ -2858,7 +2878,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D148"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D153" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1216, 1598.44 )
@@ -2872,7 +2892,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D153"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D159" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1344, 1599.26 )
@@ -2886,7 +2906,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D159"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D163" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1472, 1598.44 )
@@ -2900,7 +2920,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D163"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D167" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1600, 1604.96 )
@@ -2914,7 +2934,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D167"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D170" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1536, 1468.81 )
@@ -2928,7 +2948,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D170"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D174" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1409.59, 1468.81 )
@@ -2942,7 +2962,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D174"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D126" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3041.43, 2557.22 )
@@ -2956,7 +2976,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D126"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D140" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1918.57, 2642.7 )
@@ -2970,7 +2990,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D140"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D151" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1916.28, 2283.81 )
@@ -2984,7 +3004,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D151"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D52" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1858.75, -1392.2 )
@@ -2998,7 +3018,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D52"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D12" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1059.93, -2117.8 )
@@ -3013,7 +3033,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D12"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D70" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -568.839, -2116.51 )
@@ -3028,7 +3048,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D70"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D17" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -532.967, -1036.55 )
@@ -3042,7 +3062,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D17"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D93" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -527.956, -562.221 )
@@ -3056,7 +3076,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D93"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D45" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1858.75, -1635.68 )
@@ -3070,7 +3090,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D45"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D49" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1861.51, -1155.68 )
@@ -3084,7 +3104,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D49"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D31" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -815.51, -2116.5 )
@@ -3099,7 +3119,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D31"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D74" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -324.415, -2115.21 )
@@ -3114,7 +3134,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D74"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D3" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -469.698, -1448.87 )
@@ -3128,7 +3148,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D3"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D82" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -464.688, -975.351 )
@@ -3142,7 +3162,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D82"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D34" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1919.27, -2048 )
@@ -3156,7 +3176,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D34"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D100" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3103.27, 1664 )
@@ -3170,7 +3190,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D100"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D212" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 190.411, 1557.48 )
@@ -3184,7 +3204,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D212"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D216" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 191.411, 1440.96 )
@@ -3198,7 +3218,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D216"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D217" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 75.371, -979.055 )
@@ -3212,7 +3232,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D217"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D176" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1946.41, 1344 )
@@ -3226,7 +3246,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D176"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D178" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2015.19, 1472 )
@@ -3240,7 +3260,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D178"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D182" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2142.41, 1472.81 )
@@ -3254,7 +3274,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D182"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D186" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2270.41, 1473.63 )
@@ -3268,7 +3288,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D186"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D189" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2398.41, 1474.44 )
@@ -3282,7 +3302,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D189"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D195" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1946.41, 1216 )
@@ -3296,7 +3316,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D195"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D198" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1946.41, 1088.81 )
@@ -3310,7 +3330,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D198"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D204" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2171.1, -281.164 )
@@ -3324,7 +3344,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D204"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D205" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 2046.14, -283.436 )
@@ -3338,7 +3358,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D205"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D110" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3103.27, 1900.28 )
@@ -3352,7 +3372,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D110"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D115" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3103.27, 2140.85 )
@@ -3366,7 +3386,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D115"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D127" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3104.7, 2381.42 )
@@ -3380,7 +3400,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D127"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D131" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1855.3, 2466.9 )
@@ -3394,7 +3414,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D131"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D141" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1853.01, 2108.01 )
@@ -3408,7 +3428,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D141"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D55" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1922.02, -1568 )
@@ -3422,7 +3442,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D55"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D10" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1121.59, -2176 )
@@ -3437,7 +3457,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D10"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D68" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -630.494, -2174.71 )
@@ -3452,7 +3472,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D68"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D21" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -466.944, -1212.35 )
@@ -3466,7 +3486,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D21"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D92" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -464.688, -739.652 )
@@ -3480,7 +3500,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D92"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D44" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1922.02, -1811.49 )
@@ -3494,7 +3514,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D44"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D58" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1924.78, -1331.49 )
@@ -3508,7 +3528,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D58"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D30" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -875.015, -2173.4 )
@@ -3523,7 +3543,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D30"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D76" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -383.92, -2172.11 )
@@ -3538,7 +3558,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D76"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D6" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -470.555, -1330.55 )
@@ -3552,7 +3572,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D6"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D96" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -469.156, -857.847 )
@@ -3566,7 +3586,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D96"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D48" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1918.41, -1929.68 )
@@ -3580,7 +3600,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D48"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D104" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3102.41, 1782.32 )
@@ -3594,7 +3614,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D104"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D112" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3102.41, 2018.59 )
@@ -3608,7 +3628,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D112"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D118" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3102.41, 2259.16 )
@@ -3622,7 +3642,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D118"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D138" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1857.59, 2344.65 )
@@ -3636,7 +3656,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D138"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D142" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1855.3, 1985.76 )
@@ -3650,7 +3670,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D142"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D154" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1153.59, 1540.96 )
@@ -3664,7 +3684,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D154"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D158" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1281.59, 1540.15 )
@@ -3678,7 +3698,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D158"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D164" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1409.59, 1539.33 )
@@ -3692,7 +3712,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D164"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D165" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1537.59, 1540.96 )
@@ -3706,7 +3726,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D165"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D128" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 3103.84, 2499.74 )
@@ -3720,7 +3740,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D128"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D130" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1856.16, 2585.22 )
@@ -3734,7 +3754,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D130"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D144" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -1853.87, 2226.33 )
@@ -3748,7 +3768,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D144"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D63" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1921.17, -1449.68 )
@@ -3762,7 +3782,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D63"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D16" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -997.522, -2175.29 )
@@ -3777,7 +3797,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D16"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D78" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -506.427, -2174 )
@@ -3792,7 +3812,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D78"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D22" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -467.802, -1094.85 )
@@ -3806,7 +3826,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D22"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D88" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -465.545, -619.705 )
@@ -3820,7 +3840,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D88"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D40" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1921.17, -1693.17 )
@@ -3834,7 +3854,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D40"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D50" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( 1923.92, -1213.17 )
@@ -3848,7 +3868,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D50"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D27" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -753.098, -2173.98 )
@@ -3863,7 +3883,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D27"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RigidBody2D72" type="RigidBody2D" parent=" Obstacles/Tires"]
 position = Vector2( -262.003, -2172.69 )
@@ -3878,7 +3898,7 @@ __meta__ = {
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent=" Obstacles/Tires/RigidBody2D72"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="SlowdownAreas" type="Node" parent="."]
 
@@ -3921,7 +3941,7 @@ margin_left = 44.7994
 margin_top = 34.9523
 margin_right = 386.135
 margin_bottom = 212.952
-custom_fonts/normal_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 6 )
 custom_colors/default_color = Color( 0.0784314, 1, 0, 1 )
 text = "123"
 scroll_active = false
@@ -3969,4 +3989,4 @@ script = ExtResource( 25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -627.433, 382.855 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
