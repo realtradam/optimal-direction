@@ -10,7 +10,7 @@ var velAngle
 var carAngle
 var delay = 0
 
-onready var skidObj = preload("res://4WheelCar/Skidmark.tscn")
+onready var skidObj = preload("res://4WheelCar/Skid/Skidmark.tscn")
 
 var steerDamp = 1
 

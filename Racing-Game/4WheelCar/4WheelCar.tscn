@@ -3,8 +3,9 @@
 [ext_resource path="res://4WheelCar/CarBody.gd" type="Script" id=1]
 [ext_resource path="res://Art(non-orig)/PNG/Cars/big/blue/car_blue_2.png" type="Texture" id=2]
 [ext_resource path="res://4WheelCar/FrontWheel.gd" type="Script" id=3]
-[ext_resource path="res://4WheelCar/SkidController.gd" type="Script" id=4]
+[ext_resource path="res://4WheelCar/Skid/SkidController.gd" type="Script" id=4]
 [ext_resource path="res://4WheelCar/BackWheel.gd" type="Script" id=5]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 

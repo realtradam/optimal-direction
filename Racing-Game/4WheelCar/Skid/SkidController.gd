@@ -11,7 +11,7 @@ var deleteme = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	skidFile = load("res://4WheelCar/Skidmark.tscn")
+	skidFile = load("res://4WheelCar/Skid/Skidmark.tscn")
 	skidRecent = skidFile.instance()
 	add_child(skidRecent)
 
@@ -25,7 +25,7 @@ func _process(delta):
 		# create new skidding child, and set skid to true
 
 		skidSwitch = true
-		skidFile = load("res://4WheelCar/Skidmark.tscn")
+		skidFile = load("res://4WheelCar/Skid/Skidmark.tscn")
 		skidRecent = skidFile.instance()
 		add_child(skidRecent)
 		#set to run
