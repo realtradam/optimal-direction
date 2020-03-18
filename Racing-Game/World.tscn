@@ -52,7 +52,7 @@ radius = 28.3155
 size = 200
 font_data = ExtResource( 17 )
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 795.282, 251.806 )
 
 [node name="World" type="Node"]
@@ -74,7 +74,7 @@ texture = ExtResource( 1 )
 
 [node name="Wall27" type="StaticBody2D" parent=" Obstacles/SolidOuterWalls"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( -1984, 362 )
+position = Vector2( -1961.79, 360.149 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -93,7 +93,7 @@ __meta__ = {
 
 [node name="Wall28" type="StaticBody2D" parent=" Obstacles/SolidOuterWalls"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 3168, 677 )
+position = Vector2( 3169.67, 393.07 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -131,7 +131,7 @@ __meta__ = {
 
 [node name="Wall30" type="StaticBody2D" parent=" Obstacles/SolidOuterWalls"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 544, 2848 )
+position = Vector2( 544, 2802.58 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -3907,4 +3907,4 @@ script = ExtResource( 25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -627.433, 382.855 )
-shape = SubResource( 12 )
+shape = SubResource( 8 )

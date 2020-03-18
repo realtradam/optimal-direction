@@ -17,13 +17,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	
 	if(skidSwitch && get_parent().isSkid):#if controller believes car is skidding and the wheel is skidding
 		#ignore the status and let the skid keep drawing
 		pass
 	elif(!skidSwitch && get_parent().isSkid):#controller doesnt skid, but wheel is supposed to be skidding
 		# create new skidding child, and set skid to true
-
 		skidSwitch = true
 		skidFile = load("res://4WheelCar/Skid/Skidmark.tscn")
 		skidRecent = skidFile.instance()
