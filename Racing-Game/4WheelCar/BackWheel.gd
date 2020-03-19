@@ -33,6 +33,7 @@ func _process(delta):
 	
 	if Input.is_action_pressed("forward"):
 		if !Input.is_action_pressed("brake"):
+			print("GO")
 			apply_central_impulse(Vector2(0,-gear(velocity, hp, acceleration)).rotated(carAngle)*delta*5000)
 		else:
 			pass

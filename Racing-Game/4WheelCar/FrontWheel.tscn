@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://4WheelCar/Skid/SkidController.gd" type="Script" id=1]
+[ext_resource path="res://4WheelCar/FrontWheel.gd" type="Script" id=2]
+[ext_resource path="res://Art(non-orig)/crosshair(isorig).png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6.93714, 14.1584 )
+
+[node name="FrontWheel" type="RigidBody2D"]
+z_index = 2
+mass = 15.0
+linear_damp = 0.4
+angular_damp = 7.04
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+disabled = true
+
+[node name="SkidController4" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
