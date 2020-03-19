@@ -18,19 +18,20 @@ func _process(delta):
 	velocity = measure_velocity()
 	#---
 	set_rotation(carAngle)
+	wheelAngle = get_transform().get_rotation()
 
 	isSkid = Input.is_action_pressed("grip")
-	
+
 	if Input.is_action_pressed("grip") || Input.is_action_pressed("brake"):
 		nullStrength += max(5,velocity/7)
 	else:
-		nullStrength += 1
-	
+		nullStrength += 5
+
 	#Braking
 	setBrake(0)
 	null_slide(nullStrength, delta)
-	
-	
+
+
 	if Input.is_action_pressed("forward"):
 		if !Input.is_action_pressed("brake"):
 			apply_central_impulse(Vector2(0,-gear(velocity, hp, acceleration)).rotated(carAngle)*delta*5000)

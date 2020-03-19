@@ -6,7 +6,6 @@
 [ext_resource path="res://4WheelCar/CarProperties.gd" type="Script" id=6]
 [ext_resource path="res://4WheelCar/Wheels/WheelCreation.gd" type="Script" id=9]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 35.7301, 58.1399 )
 

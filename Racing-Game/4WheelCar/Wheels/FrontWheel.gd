@@ -26,25 +26,31 @@ func _process(delta):
 	velAngle = atan2(velVector.y,velVector.x)
 	isForward = is_forward()
 	#---
-	set_rotation(carAngle)
-	
+
 	isSkid = Input.is_action_pressed("grip")
-	
+
 	#Determines if drifting
 	if Input.is_action_pressed("grip") || Input.is_action_pressed("brake"):
 		nullStrength += max(5,velocity/7)
 	else:
-		nullStrength += 1
-	
+		nullStrength += 4
+
 	#Braking
 	setBrake(0)
-	null_slide(nullStrength,delta)
-	
+
 	#Steering
-	if Input.is_action_pressed("steer_left"):
-		apply_central_impulse(steerDamp*Vector2(0,steer_curve(steerSplitA, steerSplitB, steerHeight, steerLimit,steerMinimum)).rotated(steer_angle())*delta*5000)
-	if Input.is_action_pressed("steer_right"):
-		apply_central_impulse(steerDamp*Vector2(0,-steer_curve(steerSplitA, steerSplitB, steerHeight, steerLimit,steerMinimum)).rotated(steer_angle())*delta*5000)
+	#if pressing one button, or the other, but not both(xor)
+	if !(Input.is_action_pressed("steer_left") && Input.is_action_pressed("steer_right")) and (Input.is_action_pressed("steer_left") || Input.is_action_pressed("steer_right")):
+		if Input.is_action_pressed("steer_left"):
+			set_rotation(carAngle-deg2rad(45))
+			nullStrength += 0
+		if Input.is_action_pressed("steer_right"):
+			set_rotation(carAngle+deg2rad(45))
+			nullStrength += 0
+	else:
+		set_rotation(carAngle)
+	wheelAngle = get_transform().get_rotation()
+	null_slide(nullStrength,delta)
 
 #returns the angle the car is facing, relative to the direction it is moving
 func steer_angle():

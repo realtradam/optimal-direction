@@ -25,7 +25,7 @@ func createWheel(locX, locY, type):
 		wheeltemp.set_position(Vector2(locX,locY))
 		add_child(wheeltemp)
 		wheeltemp.initVars(locX,locY)
-		
+
 #		add_child(tempA)
 	elif(type == "back"):
 		var wheeltemp_resource = load("res://4WheelCar/Wheels/BackWheel.tscn")

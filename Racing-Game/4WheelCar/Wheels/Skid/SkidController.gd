@@ -33,4 +33,4 @@ func _process(_delta):
 		skidRecent.skidDraw = false
 		skidSwitch = false
 		pass
-	
+
