@@ -7,7 +7,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	createWeight([0,30,30])
+	createWeight(0,30,30)
 	pass # Replace with function body.
 
 
@@ -15,9 +15,9 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func createWeight(dataArray):
+func createWeight(locX,locY,Mass):
 		var weighttemp_resource = load("res://4WheelCar/Weight/Weight.tscn")
 		var weighttemp = weighttemp_resource.instance()
-		weighttemp.set_position(Vector2(dataArray[0],dataArray[1]))
+		weighttemp.set_position(Vector2(locX,locY))
 		add_child(weighttemp)
-		weighttemp.initVars(dataArray)
+		weighttemp.initVars(locX,locY,Mass)

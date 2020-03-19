@@ -10,11 +10,11 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func initVars(dataArray):
+func initVars(locX,locY,Mass):
 #	#---Creating and attaching pinjoint to wheel
-	mass = dataArray[2]
+	mass = Mass
 	var tempA = PinJoint2D.new()
-	tempA.set_position(Vector2(dataArray[0],dataArray[1]))
+	tempA.set_position(Vector2(locX,locY))
 	print(get_parent().get_parent().get_path())
 	tempA.set_node_a(get_path())
 	tempA.set_node_b(get_parent().get_parent().get_path())

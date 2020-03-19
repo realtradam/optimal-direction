@@ -7,10 +7,10 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	createWheel("front", [17,-27])
-	createWheel("front", [-17,-27])
-	createWheel("back", [20,36])
-	createWheel("back", [-20,36])
+	createWheel(17,-27,"front")
+	createWheel(-17,-27,"front")
+	createWheel(20,36,"back")
+	createWheel(-20,36,"back")
 	pass # Replace with function body.
 
 
@@ -18,18 +18,18 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func createWheel(type,dataArray):
+func createWheel(locX, locY, type):
 	if(type == "front"):
 		var wheeltemp_resource = load("res://4WheelCar/Wheels/FrontWheel.tscn")
 		var wheeltemp = wheeltemp_resource.instance()
-		wheeltemp.set_position(Vector2(dataArray[0],dataArray[1]))
+		wheeltemp.set_position(Vector2(locX,locY))
 		add_child(wheeltemp)
-		wheeltemp.initVars(dataArray)
+		wheeltemp.initVars(locX,locY)
 		
 #		add_child(tempA)
 	elif(type == "back"):
 		var wheeltemp_resource = load("res://4WheelCar/Wheels/BackWheel.tscn")
 		var wheeltemp = wheeltemp_resource.instance()
-		wheeltemp.set_position(Vector2(dataArray[0],dataArray[1]))
+		wheeltemp.set_position(Vector2(locX,locY))
 		add_child(wheeltemp)
-		wheeltemp.initVars(dataArray)
+		wheeltemp.initVars(locX,locY)
