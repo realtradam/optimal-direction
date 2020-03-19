@@ -9,6 +9,8 @@ var directionUnitVector
 
 func _ready():
 	angular_damp = 5
+	
+	
 	pass
 
 func _process(_delta):

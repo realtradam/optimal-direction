@@ -1,15 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://4WheelCar/CarBody.gd" type="Script" id=1]
 [ext_resource path="res://Art(non-orig)/PNG/Cars/big/blue/car_blue_2.png" type="Texture" id=2]
-[ext_resource path="res://Art(non-orig)/crosshair(isorig).png" type="Texture" id=3]
+[ext_resource path="res://4WheelCar/WeightCreation.gd" type="Script" id=4]
 [ext_resource path="res://4WheelCar/CarProperties.gd" type="Script" id=6]
 [ext_resource path="res://4WheelCar/WheelCreation.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 35.7301, 58.1399 )
-
-[sub_resource type="RectangleShape2D" id=1]
 
 [node name="4WheelCar" type="Node"]
 script = ExtResource( 6 )
@@ -28,26 +26,8 @@ visible = false
 modulate = Color( 0, 0, 0, 1 )
 shape = SubResource( 2 )
 
-[node name="Engine" type="RigidBody2D" parent="CarBody"]
-position = Vector2( 0, 26 )
-z_index = 2
-mass = 10.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CarBody/Engine"]
-z_index = 2
-shape = SubResource( 1 )
-disabled = true
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="CarBody/Engine"]
-texture = ExtResource( 3 )
-
 [node name="Wheels" type="Node" parent="CarBody"]
 script = ExtResource( 9 )
 
-[node name="PinjointEngine" type="PinJoint2D" parent="CarBody"]
-position = Vector2( 0, 26 )
-node_a = NodePath("../Engine")
-node_b = NodePath("..")
+[node name="Weight" type="Node" parent="CarBody"]
+script = ExtResource( 4 )

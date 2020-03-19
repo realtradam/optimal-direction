@@ -1,9 +1,8 @@
 extends Node
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+# This script creates and attaches all the wheels. Depending on the variables
+# given to this script, it can generate different type of vehicles
 
 
 # Called when the node enters the scene tree for the first time.

@@ -28,8 +28,6 @@ func initVars(dataArray):
 #	#---Creating and attaching pinjoint to wheel
 	var tempA = PinJoint2D.new()
 	tempA.set_position(Vector2(dataArray[0],dataArray[1]))
-#	var tempB = Sprite.new()
-	print(get_parent().get_parent().get_path())
 	tempA.set_node_a(get_path())
 	tempA.set_node_b(get_parent().get_parent().get_path())
 	tempA.softness = 0
