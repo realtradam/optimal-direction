@@ -2,11 +2,12 @@
 
 [ext_resource path="res://4WheelCar/CarBody.gd" type="Script" id=1]
 [ext_resource path="res://Art(non-orig)/PNG/Cars/big/blue/car_blue_2.png" type="Texture" id=2]
-[ext_resource path="res://4WheelCar/WeightCreation.gd" type="Script" id=4]
+[ext_resource path="res://4WheelCar/Weight/WeightCreation.gd" type="Script" id=4]
 [ext_resource path="res://4WheelCar/CarProperties.gd" type="Script" id=6]
-[ext_resource path="res://4WheelCar/WheelCreation.gd" type="Script" id=9]
+[ext_resource path="res://4WheelCar/Wheels/WheelCreation.gd" type="Script" id=9]
 
-[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 35.7301, 58.1399 )
 
 [node name="4WheelCar" type="Node"]
@@ -24,7 +25,7 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarBody"]
 visible = false
 modulate = Color( 0, 0, 0, 1 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Wheels" type="Node" parent="CarBody"]
 script = ExtResource( 9 )

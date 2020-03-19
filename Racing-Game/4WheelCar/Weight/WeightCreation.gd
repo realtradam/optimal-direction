@@ -16,7 +16,7 @@ func _ready():
 #	pass
 
 func createWeight(dataArray):
-		var weighttemp_resource = load("res://4WheelCar/Weight.tscn")
+		var weighttemp_resource = load("res://4WheelCar/Weight/Weight.tscn")
 		var weighttemp = weighttemp_resource.instance()
 		weighttemp.set_position(Vector2(dataArray[0],dataArray[1]))
 		add_child(weighttemp)

@@ -20,7 +20,7 @@ func _ready():
 
 func createWheel(type,dataArray):
 	if(type == "front"):
-		var wheeltemp_resource = load("res://4WheelCar/FrontWheel.tscn")
+		var wheeltemp_resource = load("res://4WheelCar/Wheels/FrontWheel.tscn")
 		var wheeltemp = wheeltemp_resource.instance()
 		wheeltemp.set_position(Vector2(dataArray[0],dataArray[1]))
 		add_child(wheeltemp)
@@ -28,7 +28,7 @@ func createWheel(type,dataArray):
 		
 #		add_child(tempA)
 	elif(type == "back"):
-		var wheeltemp_resource = load("res://4WheelCar/BackWheel.tscn")
+		var wheeltemp_resource = load("res://4WheelCar/Wheels/BackWheel.tscn")
 		var wheeltemp = wheeltemp_resource.instance()
 		wheeltemp.set_position(Vector2(dataArray[0],dataArray[1]))
 		add_child(wheeltemp)

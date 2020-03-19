@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://4WheelCar/Skid/Skidmarks.gd" type="Script" id=1]
+[ext_resource path="res://4WheelCar/Wheels/Skid/Skidmarks.gd" type="Script" id=1]
 [ext_resource path="res://Art(non-orig)/PNG/Objects/skidmark_short_1.png" type="Texture" id=2]
+
 
 [node name="Skidmark" type="Line2D"]
 position = Vector2( -21.2326, -38.4176 )

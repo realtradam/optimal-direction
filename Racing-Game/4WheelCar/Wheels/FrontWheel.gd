@@ -1,4 +1,4 @@
-extends "res://4WheelCar/Wheel.gd"
+extends "res://4WheelCar/Wheels/Wheel.gd"
 
 #Reduces steering strength when braking
 var steerDamp = 1
