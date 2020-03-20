@@ -3,9 +3,9 @@
 [ext_resource path="res://4WheelCar/Wheels/Skid/Skidmarks.gd" type="Script" id=1]
 [ext_resource path="res://Art(non-orig)/PNG/Objects/skidmark_short_1.png" type="Texture" id=2]
 
-
 [node name="Skidmark" type="Line2D"]
 position = Vector2( -21.2326, -38.4176 )
+width = 25.0
 default_color = Color( 0.4, 0.501961, 1, 1 )
 texture = ExtResource( 2 )
 texture_mode = 192263440

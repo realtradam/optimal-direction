@@ -3,15 +3,16 @@ extends Camera2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var printfps = 0;
+var printfps = 0
+var cameraDistance = 10000
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	zoom = Vector2(7.5,7.5)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	zoom = Vector2(cameraDistance/max(get_viewport().size.x,get_viewport().size.y),cameraDistance/max(get_viewport().size.x,get_viewport().size.y))
 #	#print fps
 #	printfps += delta
 #	if(printfps > 1):
