@@ -1,7 +1,7 @@
 extends "res://4WheelCar/Wheels/Wheel.gd"
 
 #Accelerating
-var hp = 4.0
+var hp = 70000.0
 var acceleration = 5
 
 var gripDelay = 0
@@ -31,20 +31,22 @@ func _process(delta):
 	setBrake(0)
 	null_slide(nullStrength, delta)
 
-
+#
 	if Input.is_action_pressed("forward"):
 		if !Input.is_action_pressed("brake"):
-			apply_central_impulse(Vector2(0,-gear(velocity, hp, acceleration)).rotated(carAngle)*delta*5000)
+			apply_central_impulse(Vector2(0,-50765000).rotated(carAngle)*delta)
+#			apply_central_impulse(Vector2(0,-gear(velocity, hp, acceleration)).rotated(carAngle)*delta*5000)
 		else:
 			pass
 	elif Input.is_action_pressed("backward"):
 		if !Input.is_action_pressed("brake"):
-			apply_central_impulse(Vector2(0,(1)).rotated(carAngle)*delta*5000)
+			apply_central_impulse(Vector2(0,50765000).rotated(carAngle)*delta)
+#			apply_central_impulse(Vector2(0,(1)).rotated(carAngle)*delta*5000)
 		else:
 			pass
 
 func measure_velocity():
-	return sqrt(get_linear_velocity().dot(get_linear_velocity()))/12
+	return sqrt(get_linear_velocity().dot(get_linear_velocity()))*0.036
 
 
 func gear(var rpm, var maxPower, var topSpeed):

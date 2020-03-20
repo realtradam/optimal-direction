@@ -7,10 +7,14 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	createWheel(17,-27,"front")
-	createWheel(-17,-27,"front")
-	createWheel(20,36,"back")
-	createWheel(-20,36,"back")
+	var frontSeperation = 73
+	var frontDistance = 115
+	var backSeperation = 75
+	var backDistance = 115
+	createWheel(frontSeperation,-frontDistance,"front")
+	createWheel(-frontSeperation,-frontDistance,"front")
+	createWheel(backSeperation,backDistance,"back")
+	createWheel(-backSeperation,backDistance,"back")
 	pass # Replace with function body.
 
 

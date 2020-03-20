@@ -45,17 +45,17 @@ func null_slide(var strength, var delta):
 	var directionAngle = wheelAngle + (PI/2.0)#the angle the car is facing(relative to the world)
 	var directionUnitVector = Vector2(cos(directionAngle),sin(directionAngle)).normalized()#the direction the car is facing
 	var nullify = directionUnitVector * movementUnitVector.dot(directionUnitVector)
-	wheelSlip = (-(movementUnitVector - nullify))*strength
-	apply_central_impulse(wheelSlip*delta*5000)
+	wheelSlip = (-(movementUnitVector - nullify))*500 * 10 * 100
+	apply_central_impulse(wheelSlip*delta*100)
 
 #checks if the car is braking, and applies brake physics
 func setBrake(var strength):
 	#Braking
 	if Input.is_action_pressed("brake"):
 		if velocity > 20:
-			linear_damp = 3
+			linear_damp = 300000
 		else:
-			linear_damp = 6
+			linear_damp = 600000
 	else:
 		linear_damp = 0.01
 

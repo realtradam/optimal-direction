@@ -1,0 +1,15 @@
+1 pixel = 1cm
+1 impulse = 1/100 n/s
+1 mass = 10g
+
+100 impulse: 1 n/s
+100 mass: 1 kg
+
+cm/s to km/h = * 0.036
+
+m/s * kg*100 * 100 = get speed at m/s
+e.g 
+4.638889 * 781 * 100 * 100
+781(mass of elise)
+
+1617px imagething(deletethis)

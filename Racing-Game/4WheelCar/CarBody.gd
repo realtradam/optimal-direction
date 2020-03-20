@@ -6,9 +6,10 @@ var speedometerNode
 
 var directionAngle
 var directionUnitVector
-
+#curb weight 781kg(body + wheels + engine)
 func _ready():
 	angular_damp = 5
+	mass = 564.8 * 100
 
 
 	pass
@@ -24,9 +25,15 @@ func _process(_delta):
 	cameraNode.set_position(get_global_transform().get_origin())
 	speedometerNode.updateSpeed(floor(measure_velocity()))
 
-#Total speed of the car
+	if(Input.is_action_pressed("brake")):
+		linear_damp = 2
+	else:
+		linear_damp = 0.5
+
+#Total speed of the car(in cm per second)
 func measure_velocity():
-		return sqrt(get_linear_velocity().dot(get_linear_velocity()))/12
+		#dot product of itself gives the magnitude squared
+		return sqrt(get_linear_velocity().dot(get_linear_velocity()))*0.036
 
 #Gets only the component that is going in the direction of the car
 func measure_forward_velocity():

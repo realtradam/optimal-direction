@@ -9,6 +9,8 @@ var steerMinimum = 1
 var hp = 4.0
 var acceleration = 5
 
+var maxRpm = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://4WheelCar/CarBody.gd" type="Script" id=1]
-[ext_resource path="res://Art(non-orig)/PNG/Cars/big/blue/car_blue_2.png" type="Texture" id=2]
+[ext_resource path="res://Art(orig)/Png/EliseRipoff.png" type="Texture" id=2]
 [ext_resource path="res://4WheelCar/Weight/WeightCreation.gd" type="Script" id=4]
 [ext_resource path="res://4WheelCar/CarProperties.gd" type="Script" id=6]
 [ext_resource path="res://4WheelCar/Wheels/WheelCreation.gd" type="Script" id=9]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 35.7301, 58.1399 )
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 0, -190, 50, -180, 90, -150, 90, 145, 70, 170, 30, 190, 0, 190, -30, 190, -70, 170, -90, 145, -90, -150, -50, -180 )
 
 [node name="4WheelCar" type="Node"]
 script = ExtResource( 6 )
@@ -15,14 +15,13 @@ script = ExtResource( 6 )
 [node name="CarBody" type="RigidBody2D" parent="."]
 position = Vector2( -0.446396, -0.582428 )
 z_index = 1
-mass = 30.0
+mass = 62480.0
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="CarBody"]
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarBody"]
-visible = false
 modulate = Color( 0, 0, 0, 1 )
 shape = SubResource( 1 )
 

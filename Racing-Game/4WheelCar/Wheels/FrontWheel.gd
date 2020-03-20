@@ -4,11 +4,15 @@ extends "res://4WheelCar/Wheels/Wheel.gd"
 var steerDamp = 1
 
 #Steering Curve Vars
-var steerSplitA = 20
-var steerSplitB = 40
-var steerHeight = 2.6
-var steerLimit = 73
-var steerMinimum = 1
+#var steerSplitA = 20
+#var steerSplitB = 40
+#var steerHeight = 2.6
+#var steerLimit = 73
+#var steerMinimum = 1
+
+var steerAngle = 0
+var steerStrength = 250 #how fast the wheels turn when holding a direction
+var steerLimit = 60  #how far the wheels will turn up to before stopping
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,13 +46,31 @@ func _process(delta):
 	#if pressing one button, or the other, but not both(xor)
 	if !(Input.is_action_pressed("steer_left") && Input.is_action_pressed("steer_right")) and (Input.is_action_pressed("steer_left") || Input.is_action_pressed("steer_right")):
 		if Input.is_action_pressed("steer_left"):
-			set_rotation(carAngle-deg2rad(45))
+			if(steerAngle>-steerLimit):
+				steerAngle -= (steerStrength*delta)
+				if steerAngle < -steerLimit:
+					steerAngle = -steerLimit
+			set_rotation(carAngle+deg2rad(steerAngle))#needs to be negative
 			nullStrength += 0
 		if Input.is_action_pressed("steer_right"):
-			set_rotation(carAngle+deg2rad(45))
+			if(steerAngle<steerLimit):
+				steerAngle += (steerStrength*delta)
+				if steerAngle > steerLimit:
+					steerAngle = steerLimit
+			set_rotation(carAngle+deg2rad(steerAngle))
 			nullStrength += 0
 	else:
-		set_rotation(carAngle)
+		if(steerAngle < 0):
+			steerAngle += (steerStrength*delta)
+			if(steerAngle > 0):
+				steerAngle = 0
+		elif(steerAngle > 0):
+			steerAngle -= (steerStrength*delta)
+			if(steerAngle < 0):
+				steerAngle = 0
+		set_rotation(carAngle+deg2rad(steerAngle))
+
+
 	wheelAngle = get_transform().get_rotation()
 	null_slide(nullStrength,delta)
 

@@ -6,7 +6,7 @@ var err2
 func _ready():
 	err1 = connect("body_entered", self, "_on_Area2D_body_enter")
 	err2 = connect("body_exited", self, "_on_Area2D_body_exit")
-	
+
 	#stops warning from poping up so yee
 	if(err1 != 0 || err2 != 0):
 		print(err1)
